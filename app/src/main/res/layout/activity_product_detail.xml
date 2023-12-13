@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProductDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/detailProductImage"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="@color/black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/detailProductImage"
+            android:layout_marginTop="-200dp"
+            android:background="@drawable/rounded_corner_top_bg3_stroke3"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp">
+
+            <LinearLayout
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+            </LinearLayout>
+
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/detailProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Caramel Muối Phin Sữa Tươi"
+                android:textColor="@color/firstColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                app:layout_constraintTop_toBottomOf="@id/detailProductCategory"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="192dp">
+
+                <TextView
+                    android:id="@+id/detailProductDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="@string/product_detail_desc"
+                    android:textColor="@color/firstColor"
+                    android:textSize="16sp" />
+            </ScrollView>
+
+            <TextView
+                app:layout_constraintBottom_toTopOf="@id/qty_checkout_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:text="55.000 đ"
+                android:textColor="@color/firstColor"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="38dp"
+                tools:layout_editor_absoluteY="127dp" />
+
+            <LinearLayout
+                android:id="@+id/qty_checkout_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="364dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rounded_corner_bg3_stroke1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/removeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:src="@drawable/ic_remove"
+                        app:tint="@color/firstColor" />
+
+                    <TextView
+                        android:id="@+id/quantityEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/firstColor"
+                        android:textSize="22sp" />
+
+                    <ImageView
+                        android:id="@+id/addButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:src="@drawable/ic_add"
+                        app:tint="@color/firstColor" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/firstColor"
+                    android:text="Thêm vào giỏ hàng"
+                    android:textColor="@color/thirdColor" />
+
+
+            </LinearLayout>
+
+            <TextView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailProductName"
+                android:id="@+id/detailProductCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cà phê"
+                android:textColor="@color/firstColor"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="18dp"
+                tools:layout_editor_absoluteY="84dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

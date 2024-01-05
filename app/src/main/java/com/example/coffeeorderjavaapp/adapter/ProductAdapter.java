@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Picasso.with(context).load(product.getImageURL()).into(holder.getIvProductImg());
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
-            intent.putExtra("PostId", product.getId());
+            intent.putExtra("product", product);
             holder.itemView.getContext().startActivity(intent);
         });
     }

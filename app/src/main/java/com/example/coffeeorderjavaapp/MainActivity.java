@@ -63,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                Log.e("Position", "onPageScrolled: " + position );
+            public void onPageSelected(int position){
                 tabLayout.getTabAt(position).select();
             }
         });

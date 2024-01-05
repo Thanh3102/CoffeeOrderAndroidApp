@@ -13,6 +13,8 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
         super(fragmentActivity);
     }
 
+
+
     @NonNull
     @Override
     public Fragment createFragment(int position) {

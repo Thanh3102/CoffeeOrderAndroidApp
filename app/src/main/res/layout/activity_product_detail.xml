@@ -28,15 +28,14 @@
             android:paddingVertical="30dp">
 
             <LinearLayout
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
+                android:weightSum="2"
+                app:layout_constraintTop_toTopOf="parent">
 
             </LinearLayout>
 
             <TextView
-                app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/detailProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,12 +43,13 @@
                 android:text="Caramel Muối Phin Sữa Tươi"
                 android:textColor="@color/firstColor"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
-                app:layout_constraintTop_toBottomOf="@id/detailProductCategory"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                app:layout_constraintTop_toBottomOf="@id/detailProductCategory"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="192dp">
 
@@ -64,7 +64,7 @@
             </ScrollView>
 
             <TextView
-                app:layout_constraintBottom_toTopOf="@id/qty_checkout_layout"
+                android:id="@+id/productDetailPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="30dp"
@@ -72,14 +72,15 @@
                 android:textColor="@color/firstColor"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/qty_checkout_layout"
                 tools:layout_editor_absoluteX="38dp"
                 tools:layout_editor_absoluteY="127dp" />
 
             <LinearLayout
                 android:id="@+id/qty_checkout_layout"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:layout_editor_absoluteX="20dp"
                 tools:layout_editor_absoluteY="364dp">
 
@@ -129,8 +130,6 @@
             </LinearLayout>
 
             <TextView
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailProductName"
                 android:id="@+id/detailProductCategory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -139,6 +138,8 @@
                 android:textColor="@color/firstColor"
                 android:textSize="26sp"
                 android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailProductName"
                 tools:layout_editor_absoluteX="18dp"
                 tools:layout_editor_absoluteY="84dp" />
 

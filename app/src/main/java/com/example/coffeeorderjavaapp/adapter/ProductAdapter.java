@@ -1,10 +1,13 @@
 package com.example.coffeeorderjavaapp.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,11 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffeeorderjavaapp.ProductDetailActivity;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<Product> products;
+    private final Context context;
+
+    public ProductAdapter(List<Product> products, Context context){
+        this.context = context;
+        this.products = products;
+    }
 
     @NonNull
     @Override
@@ -34,13 +44,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.getTvName().setText(product.getName());
         holder.getTvCategory().setText(product.getCategory());
         holder.getTvPrice().setText(Double.toString(product.getPrice()) + "đ");
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
-                intent.putExtra("PostId", product.getId());
-                holder.itemView.getContext().startActivity(intent);
-            }
+        Picasso.with(context).load(product.getImageURL()).into(holder.getIvProductImg());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
+            intent.putExtra("PostId", product.getId());
+            holder.itemView.getContext().startActivity(intent);
         });
     }
 
@@ -55,11 +63,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         private final TextView tvCategory;
         private final TextView tvPrice;
 
+        private final ImageView ivProductImg;
+
         public ViewHolder(View view) {
             super(view);
             this.tvName = (TextView) view.findViewById(R.id.productItemName);
             this.tvCategory = (TextView) view.findViewById(R.id.productItemCategory);
             this.tvPrice = (TextView) view.findViewById(R.id.productItemPrice);
+            this.ivProductImg = (ImageView) view.findViewById(R.id.itemProductImageView);
         }
 
         public TextView getTvName() {
@@ -73,11 +84,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public TextView getTvPrice() {
             return tvPrice;
         }
+
+        public ImageView getIvProductImg() {
+            return ivProductImg;
+        }
     }
-
-    public ProductAdapter(List<Product> products) {
-        this.products = products;
-    }
-
-
 }

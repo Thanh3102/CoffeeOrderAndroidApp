@@ -1,8 +1,6 @@
 package com.example.coffeeorderjavaapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -10,20 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.coffeeorderjavaapp.adapter.MainViewPagerAdapter;
-import com.example.coffeeorderjavaapp.adapter.ProductAdapter;
-import com.example.coffeeorderjavaapp.model.FirebaseProduct;
-import com.example.coffeeorderjavaapp.model.Product;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.Firebase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, TestActivity.class);
+//        startActivity(intent);
 
 
 //        FirebaseFirestore firestore = FirebaseFirestore.getInstance();

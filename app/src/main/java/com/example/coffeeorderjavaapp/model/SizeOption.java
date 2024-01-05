@@ -1,12 +1,12 @@
 package com.example.coffeeorderjavaapp.model;
 
-public class FirebaseSizeOption {
+public class SizeOption {
     private String size_name;
     private int size_price;
 
-    public FirebaseSizeOption(){} // Dùng cho firebase
+    public SizeOption(){} // Dùng cho firebase
 
-    public FirebaseSizeOption(String size_name, int size_price) {
+    public SizeOption(String size_name, int size_price) {
         this.size_name = size_name;
         this.size_price = size_price;
     }

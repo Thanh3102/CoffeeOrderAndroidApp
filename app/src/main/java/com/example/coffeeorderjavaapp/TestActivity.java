@@ -1,26 +1,16 @@
 package com.example.coffeeorderjavaapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
-import com.example.coffeeorderjavaapp.model.FirebaseProduct;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
+import com.example.coffeeorderjavaapp.model.Product;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -30,14 +20,14 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         Button testBtn = findViewById(R.id.testBtn);
-        ArrayList<FirebaseProduct> products = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
         testBtn.setOnClickListener(v -> {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("products").get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("Query data", document.getId() + " => " + document.getData());
-                        FirebaseProduct product = document.toObject(FirebaseProduct.class);
+                        Product product = document.toObject(Product.class);
                         product.setId(document.getId());
                         products.add(product);
                     }

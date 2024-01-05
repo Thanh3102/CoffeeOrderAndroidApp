@@ -1,10 +1,10 @@
 package com.example.coffeeorderjavaapp.model;
 
-public class FirebaseToppingOption {
+public class ToppingOption {
     private String topping_name;
     private int topping_price;
 
-    public FirebaseToppingOption(){}
+    public ToppingOption(){}
 
     @Override
     public String toString() {
@@ -14,7 +14,7 @@ public class FirebaseToppingOption {
                 '}';
     }
 
-    public FirebaseToppingOption(String topping_name, int topping_price) {
+    public ToppingOption(String topping_name, int topping_price) {
         this.topping_name = topping_name;
         this.topping_price = topping_price;
     }

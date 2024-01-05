@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.coffeeorderjavaapp.fragment.CartFragment;
 import com.example.coffeeorderjavaapp.fragment.ProductListFragment;
 
 public class MainViewPagerAdapter extends FragmentStateAdapter {
@@ -19,7 +20,7 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
             case 0:
                 return new ProductListFragment();
             case 1:
-                return new ProductListFragment();
+                return new CartFragment();
             case 2:
                 return new ProductListFragment();
             case 3:

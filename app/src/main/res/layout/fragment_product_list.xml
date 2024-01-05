@@ -23,102 +23,14 @@
     </LinearLayout>
 
     <!--Category-->
-    <HorizontalScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:id="@+id/CategoryLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingVertical="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_corner_bg3_stroke3"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="5dp"
-                android:tag="All"
-                android:text="All"
-                android:textColor="@color/firstColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="5dp"
-                android:tag="ca-phe"
-                android:text="Cà phê" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="tra"
-                android:text="Trà" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="cloud"
-                android:text="Cloud" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="hi-tea"
-                android:text="Hi-Tea Healthy" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="tra-xanh"
-                android:text="Trà xanh" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="da-xay"
-                android:text="Đá xay" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_corner_bg1_stroke1"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:tag="snack"
-                android:text="Bánh &amp; Snack" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingVertical="10dp" />
     <LinearLayout
         android:id="@+id/productListContent"
         android:layout_width="match_parent"

@@ -5,22 +5,28 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 public class FirebaseProduct {
-    private String id = null;
+    private String id;
     private String name;
     private String description;
-    private ArrayList<String> favor_option = null;
+    private String category;
+    private String imageURL;
 
-    public FirebaseProduct(){
-    }
+    private int price;
+    private ArrayList<FirebaseSizeOption> size_options;
 
-    public FirebaseProduct(String name, String desc, ArrayList<String> favor_options) {
+    private ArrayList<FirebaseToppingOption> topping_options;
+
+    public FirebaseProduct(){}
+
+    public FirebaseProduct(String id, String name, String description, String category, String imageURL, int price, ArrayList<FirebaseSizeOption> size_options, ArrayList<FirebaseToppingOption> topping_options) {
+        this.id = id;
         this.name = name;
-        this.description = desc;
-        this.favor_option = favor_options;
-    }
-
-    public String getName() {
-        return name;
+        this.description = description;
+        this.category = category;
+        this.imageURL = imageURL;
+        this.price = price;
+        this.size_options = size_options;
+        this.topping_options = topping_options;
     }
 
     public String getId() {
@@ -29,6 +35,10 @@ public class FirebaseProduct {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -43,22 +53,57 @@ public class FirebaseProduct {
         this.description = description;
     }
 
-    public ArrayList<String> getFavor_option() {
-        return favor_option;
+    public String getCategory() {
+        return category;
     }
 
-    public void setFavor_option(ArrayList<String> favor_option) {
-        this.favor_option = favor_option;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    @NonNull
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public ArrayList<FirebaseSizeOption> getSize_options() {
+        return size_options;
+    }
+
+    public void setSize_options(ArrayList<FirebaseSizeOption> size_options) {
+        this.size_options = size_options;
+    }
+
     @Override
     public String toString() {
         return "FirebaseProduct{" +
-                "id='" + id + "\'" +
-                "name='" + name + '\'' +
-                ", desc='" + description + '\'' +
-                ", favor_options=" + favor_option +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", price=" + price +
+                ", size_options=" + size_options +
+                ", topping_options=" + topping_options +
                 '}';
+    }
+
+    public ArrayList<FirebaseToppingOption> getTopping_options() {
+        return topping_options;
+    }
+
+    public void setTopping_options(ArrayList<FirebaseToppingOption> topping_options) {
+        this.topping_options = topping_options;
     }
 }

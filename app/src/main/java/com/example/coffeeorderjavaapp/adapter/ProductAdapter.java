@@ -18,7 +18,9 @@ import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.Product;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private final List<Product> products;
@@ -43,11 +45,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Product product = products.get(position);
         holder.getTvName().setText(product.getName());
         holder.getTvCategory().setText(product.getCategory());
-        holder.getTvPrice().setText(Double.toString(product.getPrice()) + "đ");
+        holder.getTvPrice().setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(product.getPrice()));
         Picasso.with(context).load(product.getImageURL()).into(holder.getIvProductImg());
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
-            intent.putExtra("product", product);
+            intent.putExtra("productId", product.getId());
             holder.itemView.getContext().startActivity(intent);
         });
     }

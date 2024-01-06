@@ -21,23 +21,6 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
 
-//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//        DocumentReference productDocRef = firestore.collection("products").document("3Iz1NexPkZxlqwWGaCag");
-//        productDocRef.get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                DocumentSnapshot document = task.getResult();
-//                if (document.exists()) {
-//                    Log.d("Firebase", "DocumentSnapshot data: " + document.getData());
-//                    FirebaseProduct x = document.toObject(FirebaseProduct.class);
-//                    Log.e("Convert to object", x.toString());
-//                } else {
-//                    Log.d("Firebase", "No such document");
-//                }
-//            } else {
-//                Log.d("Firebase", "get failed with ", task.getException());
-//            }
-//        });
-
         TabLayout tabLayout = findViewById(R.id.navigationBottomLayout);
         ViewPager2 viewPager = findViewById(R.id.mainViewPager);
         MainViewPagerAdapter vpAdapter = new MainViewPagerAdapter(this);

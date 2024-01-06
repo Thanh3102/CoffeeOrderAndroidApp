@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corner_bg1_stroke1"
+    android:layout_marginEnd="30dp"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/itemSizeOptionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="{Size} + {Price}"
+        android:textColor="@color/thirdColor"
+        android:textSize="18sp" />
+
+</LinearLayout>

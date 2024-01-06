@@ -3,7 +3,7 @@ package com.example.coffeeorderjavaapp.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product implements Serializable {
+public class Product{
     private String id;
     private String name;
     private String description;

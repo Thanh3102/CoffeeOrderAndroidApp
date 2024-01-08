@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.coffeeorderjavaapp.ProductDetailAdapterCallBack;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.SizeOption;
 
@@ -19,11 +20,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class SizeOptionAdapter extends RecyclerView.Adapter<SizeOptionAdapter.ViewHolder>{
-    private final Context context;
+    private ProductDetailAdapterCallBack adapterCallback;
     private final ArrayList<SizeOption> options;
 
     public SizeOptionAdapter(Context context, ArrayList<SizeOption> options) {
-        this.context = context;
+        adapterCallback = ((ProductDetailAdapterCallBack) context);
         this.options = options;
     }
 
@@ -40,6 +41,9 @@ public class SizeOptionAdapter extends RecyclerView.Adapter<SizeOptionAdapter.Vi
         SizeOption option = options.get(position);
         String optionPrice = NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(option.getSize_price());
         holder.getTv().setText(option.getSize_name() + " + " + optionPrice);
+        holder.itemView.setOnClickListener(v -> {
+            adapterCallback.chooseSize(option);
+        });
     }
 
     @Override

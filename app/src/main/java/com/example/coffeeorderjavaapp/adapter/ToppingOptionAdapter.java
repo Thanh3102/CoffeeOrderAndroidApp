@@ -2,33 +2,29 @@ package com.example.coffeeorderjavaapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeeorderjavaapp.R;
+import com.example.coffeeorderjavaapp.ProductDetailAdapterCallBack;
 import com.example.coffeeorderjavaapp.model.ToppingOption;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ToppingOptionAdapter extends  RecyclerView.Adapter<ToppingOptionAdapter.Viewholder>{
-    private final Context context;
+public class ToppingOptionAdapter extends RecyclerView.Adapter<ToppingOptionAdapter.Viewholder> {
+    private ProductDetailAdapterCallBack adapterCallback;
     private ArrayList<ToppingOption> options;
 
-    private ArrayList<ToppingOption> checkedOptions = new ArrayList<>();
-
     public ToppingOptionAdapter(Context context, ArrayList<ToppingOption> options) {
-        this.context = context;
+        adapterCallback = ((ProductDetailAdapterCallBack) context);
         this.options = options;
     }
 
@@ -46,13 +42,10 @@ public class ToppingOptionAdapter extends  RecyclerView.Adapter<ToppingOptionAda
         String priceFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(option.getTopping_price());
         holder.getToppingTv().setText(option.getTopping_name() + " + " + priceFormat);
         holder.getToppingCheckBox().setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked){
-                checkedOptions.add(option);
-                Toast.makeText(context, checkedOptions.toString(), Toast.LENGTH_SHORT).show();
-            }
-            else{
-                checkedOptions.remove(option);
-                Toast.makeText(context, checkedOptions.toString(), Toast.LENGTH_SHORT).show();
+            if (isChecked) {
+                adapterCallback.addToppingOption(option);
+            } else {
+                adapterCallback.removeToppingOption(option);
             }
         });
     }
@@ -62,9 +55,10 @@ public class ToppingOptionAdapter extends  RecyclerView.Adapter<ToppingOptionAda
         return options.size();
     }
 
-    public static class Viewholder extends RecyclerView.ViewHolder{
+    public static class Viewholder extends RecyclerView.ViewHolder {
         private final CheckBox toppingCheckBox;
         private final TextView toppingTv;
+
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             toppingTv = itemView.findViewById(R.id.toppingTv);

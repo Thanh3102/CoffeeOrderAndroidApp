@@ -1,62 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/rounded_corner_bg1_stroke1"
     android:orientation="horizontal"
-    android:background="@drawable/rounded_corner_bg1_stroke1">
+    android:paddingVertical="10dp"
+    android:paddingEnd="10dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="10dp">
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp">
 
-        <ImageView
-            android:id="@+id/itemCartImageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/thirdColor"
-            android:scaleType="fitXY" />
-    </androidx.cardview.widget.CardView>
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/itemCartImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@color/thirdColor"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="220dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/itemCartNameTv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Product name"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/itemCartOptionTv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Product option description"/>
+            android:text="Product option description"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/itemCartQuantityTv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="000.000"
+            android:text="SL: "
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/itemCartTotalTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"/>
+            android:text="000.000"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="100sp"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/cartItemDeleteBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:gravity="center"
-            android:textSize="22sp"/>
-    </LinearLayout>
-
+        android:gravity="center"
+        android:background="@drawable/ic_delete"
+        android:backgroundTint="@color/dangerColor" />
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.coffeeorderjavaapp.adapter.SizeOptionAdapter;
 import com.example.coffeeorderjavaapp.adapter.ToppingOptionAdapter;
+import com.example.coffeeorderjavaapp.fragment.CartFragment;
 import com.example.coffeeorderjavaapp.model.CartItem;
 import com.example.coffeeorderjavaapp.model.Product;
 import com.example.coffeeorderjavaapp.model.SizeOption;
@@ -121,6 +122,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                 Toast.makeText(this, "Bạn chưa chọn size", Toast.LENGTH_SHORT).show();
                 return;
             }
+            this.countTotalPrice();
             CartItem addingItem = new CartItem(this.product.getId(),"TEST USER", this.quantity, this.sizeOption, this.checkedOptions, this.total);
             db.collection("carts").add(addingItem).addOnSuccessListener(documentReference -> {
                 Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
@@ -128,6 +130,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
             }).addOnFailureListener(e -> {
                 Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
             });
+
         });
 
 

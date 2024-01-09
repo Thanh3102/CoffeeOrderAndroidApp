@@ -3,6 +3,7 @@ package com.example.coffeeorderjavaapp.model;
 import java.util.ArrayList;
 
 public class CartItem {
+    private String id;
     private String product_id;
     private String user_id;
     private int quantity;
@@ -70,10 +71,20 @@ public class CartItem {
         this.total_price = total_price;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "CartItem{" +
-                "product_id=" + product_id +
+                "id='" + id + '\'' +
+                ", product_id='" + product_id + '\'' +
+                ", user_id='" + user_id + '\'' +
                 ", quantity=" + quantity +
                 ", size_option=" + size_option +
                 ", topping_options=" + topping_options +

@@ -31,7 +31,6 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
                 return new ProductListFragment();
         }
     }
-
     @Override
     public int getItemCount() {
         return 4;

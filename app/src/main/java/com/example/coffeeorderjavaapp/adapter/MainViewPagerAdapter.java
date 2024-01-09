@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.coffeeorderjavaapp.fragment.CartFragment;
+import com.example.coffeeorderjavaapp.fragment.FavoriteFragment;
 import com.example.coffeeorderjavaapp.fragment.ProductListFragment;
+import com.example.coffeeorderjavaapp.fragment.ProfileFragment;
 
 public class MainViewPagerAdapter extends FragmentStateAdapter {
     public MainViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -24,9 +26,9 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new CartFragment();
             case 2:
-                return new ProductListFragment();
+                return new FavoriteFragment();
             case 3:
-                return new ProductListFragment();
+                return new ProfileFragment();
             default:
                 return new ProductListFragment();
         }

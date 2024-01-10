@@ -14,7 +14,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="20dp"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             android:weightSum="3">
 
             <SearchView
-                android:id="@+id/searchView"
+                android:id="@+id/mainSearchView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

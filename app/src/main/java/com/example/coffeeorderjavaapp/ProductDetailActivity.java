@@ -27,6 +27,7 @@ import com.google.android.flexbox.JustifyContent;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -124,7 +125,8 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                 return;
             }
             this.countTotalPrice();
-            CartItem addingItem = new CartItem(this.product.getId(),"TEST USER", this.quantity, this.sizeOption, this.checkedOptions, this.total);
+            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            CartItem addingItem = new CartItem(this.product.getId(),user_id, this.quantity, this.sizeOption, this.checkedOptions, this.total);
             db.collection("carts").add(addingItem).addOnSuccessListener(documentReference -> {
                 Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                 finish();

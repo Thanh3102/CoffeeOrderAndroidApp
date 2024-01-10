@@ -18,8 +18,6 @@ import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.CartItem;
 import com.example.coffeeorderjavaapp.model.Product;
 import com.example.coffeeorderjavaapp.model.ToppingOption;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -28,11 +26,14 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
+
+    private final TextView totalTv;
     private ArrayList<CartItem> cartItems;
 
-    public CartAdapter(Context context, ArrayList<CartItem> cartItems) {
+    public CartAdapter(Context context, TextView totalTv, ArrayList<CartItem> cartItems) {
         this.context = context;
+        this.totalTv = totalTv;
         this.cartItems = cartItems;
     }
 
@@ -72,6 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                                 this.cartItems.remove(cartItem);
                                 this.notifyItemRemoved(position);
                                 Toast.makeText(context, "Delete successfully", Toast.LENGTH_SHORT).show();
+                                this.totalTv.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(this.getTotalPrice()));
                             })
                             .addOnFailureListener(e -> Log.w("CART DELETE ERROR", "Error deleting document", e));
                 });
@@ -140,5 +142,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void clearList(){
         this.cartItems.clear();
         this.notifyDataSetChanged();
+    }
+
+    public int getTotalPrice(){
+        int total = 0;
+        for(CartItem item : this.cartItems){
+            total += item.getTotal_price();
+        }
+        return total;
     }
 }

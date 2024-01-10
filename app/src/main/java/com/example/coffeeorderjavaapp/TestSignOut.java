@@ -8,16 +8,16 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class AdminActivity extends AppCompatActivity {
+public class TestSignOut extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_test_sign_out);
         Button btnSignOut = findViewById(R.id.btnSignOut);
         btnSignOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(),SignIn.class));
+            startActivity(new Intent(getApplicationContext(), SignIn.class));
             finish();
         });
     }

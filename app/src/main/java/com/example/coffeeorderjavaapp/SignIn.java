@@ -51,7 +51,6 @@ public class SignIn extends AppCompatActivity {
                         startActivity(new Intent(SignIn.this, AdminActivity.class));
                     } else {
                         Log.e("ACCOUNT ",documentSnapshot.getString("email"));
-                        startActivity(new Intent(SignIn.this, TestSignOut.class));
                     }
                     finish();
                 }
@@ -100,6 +99,7 @@ public class SignIn extends AppCompatActivity {
             }
 
             if (valid) {
+                Log.d("@!#!@!@$!@", "onCreate: ");
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
@@ -131,6 +131,8 @@ public class SignIn extends AppCompatActivity {
                                 }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
+                                Log.w("Signin fail", "signin fail: ",task.getException() );
+
                             }
                         });
             }

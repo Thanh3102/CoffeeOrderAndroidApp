@@ -48,9 +48,12 @@ public class SignIn extends AppCompatActivity {
                     String role = documentSnapshot.getString("role");
                     if ("admin".equals(role)) {
                         Log.e("ACCOUNT ",documentSnapshot.getString("email"));
+                        Log.e("Redirect", "redirectToAppropriateActivity: Admin" );
                         startActivity(new Intent(SignIn.this, AdminActivity.class));
                     } else {
+                        Log.e("Redirect", "redirectToAppropriateActivity: User" );
                         Log.e("ACCOUNT ",documentSnapshot.getString("email"));
+                        startActivity(new Intent(SignIn.this, MainActivity.class)); // nãy ko có dòng này
                     }
                     finish();
                 }
@@ -77,6 +80,8 @@ public class SignIn extends AppCompatActivity {
         signInBtn.setOnClickListener(v -> {
             String email = emailEdt.getText().toString();
             String password = passwordEdt.getText().toString();
+
+            Log.e("sign in", "Button click" );
 
             if (TextUtils.isEmpty(email)) {
                 emailEdt.setError("Email is required");
@@ -105,29 +110,7 @@ public class SignIn extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                                 if (firebaseUser != null) {
-                                    String userId = firebaseUser.getUid();
-                                    DocumentReference userRef = FirebaseFirestore.getInstance().collection("Users").document(userId);
-                                    userRef.get().addOnCompleteListener(task1 -> {
-                                        if (task1.isSuccessful()) {
-                                            DocumentSnapshot documentSnapshot = task1.getResult();
-                                            if (documentSnapshot != null && documentSnapshot.exists()) {
-                                                String role = documentSnapshot.getString("role");
-                                                if ("admin".equals(role)) {
-                                                    Toast.makeText(getApplicationContext(), "Logged in successfully. Welcome to admin page", Toast.LENGTH_SHORT).show();
-                                                    Log.d("TAG", "User: " + documentSnapshot.getString("email"));
-                                                    startActivity(new Intent(SignIn.this, AdminActivity.class));
-                                                    finish();
-                                                } else {
-                                                    Log.d("TAG", "User: " + documentSnapshot.getString("email"));
-                                                    Toast.makeText(getApplicationContext(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(SignIn.this, MainActivity.class));
-                                                    finish();
-                                                }
-                                            }
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Failed: " + task1.getException(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                    redirectToAppropriateActivity(firebaseUser);
                                 }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();

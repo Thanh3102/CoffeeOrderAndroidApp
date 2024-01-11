@@ -9,7 +9,6 @@ public class Product{
     private String description;
     private String category;
     private String imageURL;
-
     private int price;
     private ArrayList<SizeOption> size_options;
 

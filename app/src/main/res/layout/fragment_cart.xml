@@ -25,6 +25,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/cartDeleteAllBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Clear"
@@ -38,9 +39,49 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/thirdColor"
         android:paddingHorizontal="20dp" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:justifyContent="space_between"
+        app:alignItems="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng tiền"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/cartItemTotalTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="999.999.999"
+                android:textSize="28sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toCheckOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanh toán"
+            android:textColor="@color/secondColor"
+            android:backgroundTint="@color/thirdColor"
+            app:icon="@drawable/ic_long_right_arrow"
+            app:iconGravity="end"
+            app:iconSize="28sp"
+            />
+
+    </com.google.android.flexbox.FlexboxLayout>
 
 
 </LinearLayout>

@@ -6,11 +6,21 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 
 import com.example.coffeeorderjavaapp.adapter.MainViewPagerAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.navigationBottomLayout);
         ViewPager2 viewPager = findViewById(R.id.mainViewPager);
+        SearchView searchView = findViewById(R.id.mainSearchView);
         MainViewPagerAdapter vpAdapter = new MainViewPagerAdapter(this);
         viewPager.setAdapter(vpAdapter);
 
@@ -42,15 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onPageSelected(int position){
+            public void onPageSelected(int position) {
                 tabLayout.getTabAt(position).select();
             }
         });
 
+        db.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+            searchView.setQueryHint("Xin chào " + documentSnapshot.get("username").toString());
+        });
 
     }
 }

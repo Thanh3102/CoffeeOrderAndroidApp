@@ -10,6 +10,24 @@ public class User {
     private String email;
     private String password;
     private String role;
+    private String imageUser;
+    private Integer phone;
+
+    public String getImageUser() {
+        return imageUser;
+    }
+
+    public void setImageUser(String imageUser) {
+        this.imageUser = imageUser;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
 
     public User() {
     }

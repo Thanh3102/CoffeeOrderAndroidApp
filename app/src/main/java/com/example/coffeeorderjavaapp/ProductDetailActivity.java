@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.coffeeorderjavaapp.adapter.SizeOptionAdapter;
 import com.example.coffeeorderjavaapp.adapter.ToppingOptionAdapter;
+import com.example.coffeeorderjavaapp.fragment.CartFragment;
 import com.example.coffeeorderjavaapp.model.CartItem;
 import com.example.coffeeorderjavaapp.model.Product;
 import com.example.coffeeorderjavaapp.model.SizeOption;
@@ -25,6 +26,8 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -121,13 +124,16 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                 Toast.makeText(this, "Bạn chưa chọn size", Toast.LENGTH_SHORT).show();
                 return;
             }
-            CartItem addingItem = new CartItem(this.product.getId(),"TEST USER", this.quantity, this.sizeOption, this.checkedOptions, this.total);
+            this.countTotalPrice();
+            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            CartItem addingItem = new CartItem(this.product.getId(),user_id, this.quantity, this.sizeOption, this.checkedOptions, this.total);
             db.collection("carts").add(addingItem).addOnSuccessListener(documentReference -> {
                 Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+                finish();
             }).addOnFailureListener(e -> {
                 Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
             });
+
         });
 
 
@@ -191,14 +197,12 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     public void addToppingOption(ToppingOption option) {
         this.checkedOptions.add(option);
         this.countTotalPrice();
-        Toast.makeText(this, this.checkedOptions.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void removeToppingOption(ToppingOption option) {
         this.checkedOptions.remove(option);
         this.countTotalPrice();
-        Toast.makeText(this, this.checkedOptions.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

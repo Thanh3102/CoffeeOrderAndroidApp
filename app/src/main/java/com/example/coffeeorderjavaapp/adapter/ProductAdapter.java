@@ -64,7 +64,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         private final TextView tvName;
         private final TextView tvCategory;
         private final TextView tvPrice;
-
         private final ImageView ivProductImg;
 
         public ViewHolder(View view) {

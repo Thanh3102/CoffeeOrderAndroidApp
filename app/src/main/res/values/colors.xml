@@ -5,4 +5,5 @@
     <color name="firstColor">#EEDCC6</color>
     <color name="secondColor">#FFF5E9</color>
     <color name="thirdColor">#230C02</color>
+    <color name="dangerColor">#DF3E44</color>
 </resources>

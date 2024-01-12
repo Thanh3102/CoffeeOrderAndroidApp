@@ -38,6 +38,9 @@ public class MapActivity extends AppCompatActivity implements
 
     private TextView markerTv;
 
+    private double currentLat;
+    private double currentLng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,11 +72,9 @@ public class MapActivity extends AppCompatActivity implements
             if (map == null) {
                 Toast.makeText(this, "Map is not ready", Toast.LENGTH_SHORT).show();
             } else {
-                LatLngBounds australiaBounds = new LatLngBounds(
-                        new LatLng(-44, 113), // SW bounds
-                        new LatLng(-10, 154)  // NE bounds
-                );
-                map.moveCamera(CameraUpdateFactory.newLatLngBounds(australiaBounds, 0));
+                LatLng currentPosition = new LatLng(currentLat, currentLng);
+                map.moveCamera(CameraUpdateFactory.newLatLng(currentPosition));
+                map.animateCamera(CameraUpdateFactory.zoomTo(15));
             }
         });
 
@@ -118,12 +119,15 @@ public class MapActivity extends AppCompatActivity implements
             LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                finish();
                 return;
             }
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
                     500, location -> {
                         Toast.makeText(this, "Current location: " + location, Toast.LENGTH_SHORT).show();
                         Log.i("Location", "Current location " + location);
+                        currentLat = location.getLatitude();
+                        currentLng = location.getLongitude();
                     });
         }
     }

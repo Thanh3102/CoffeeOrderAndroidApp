@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:id="@+id/viewSignIn"
     tools:context=".SignIn">
 
     <ScrollView
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
                 android:text="Email"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -41,11 +43,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
+                android:textColor="@color/black"
                 android:hint="Enter your email address"
                 android:inputType="textEmailAddress"
                 android:padding="20dp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -62,6 +66,7 @@
                 android:alpha="0.7"
                 android:hint="Enter your password"
                 android:inputType="textPassword"
+                android:textColor="@color/black"
                 android:padding="20dp" />
 
             <View
@@ -74,6 +79,7 @@
                 android:layout_height="60dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="Login"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:backgroundTint="@color/black" />
 
@@ -98,6 +104,7 @@
                 android:layout_height="50dp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"

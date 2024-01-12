@@ -1,8 +1,5 @@
 package com.example.coffeeorderjavaapp.model;
 
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class User {
 
@@ -32,10 +29,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String password,Integer phone, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.phone = phone;
         this.role = role;
     }
 
@@ -74,23 +72,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", imageUser='" + imageUser + '\'' +
+                ", phone=" + phone +
                 '}';
     }
-
-//    public static  boolean isAdmin(String email, String password){
-//        // Lấy tài khoản người dùng từ Firestore Database
-//        DocumentReference df = FirebaseFirestore.getInstance().collection("users").document(email);
-//        DocumentSnapshot documentSnapshot = df.get().getResult();
-//        if (documentSnapshot == null){
-//            return false;
-//        }
-//        String role = documentSnapshot.getString("role");
-//        if (role.equals("admin")){
-//            return true;
-//        }
-//        return false;
-//    }
 }

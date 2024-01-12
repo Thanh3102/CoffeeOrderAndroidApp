@@ -78,8 +78,8 @@ public class SignIn extends AppCompatActivity {
         });
 
         signInBtn.setOnClickListener(v -> {
-            String email = emailEdt.getText().toString();
-            String password = passwordEdt.getText().toString();
+            String email = emailEdt.getText().toString().trim();
+            String password = passwordEdt.getText().toString().trim();
 
             Log.e("sign in", "Button click" );
 
@@ -118,8 +118,14 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                         }).addOnFailureListener(e -> {
+                            String errorMessage = e.getMessage();
+                            if(errorMessage.contains("A network error")){
+                                Toast.makeText(getApplicationContext(), "SIGN IN FAIL NETWORK ERROR", Toast.LENGTH_SHORT).show();
+                                Log.w("NETWORK ERROR", "signin fail: "+ errorMessage);
+
+                            }else {
                             Toast.makeText(getApplicationContext(), "SIGN IN FAIL auth credential is incorrect", Toast.LENGTH_SHORT).show();
-                            Log.w("Signin fail", "signin fail: "+ e.getMessage());
+                            Log.w("Signin fail", "signin fail: "+ errorMessage);}
                         });
             }
         });

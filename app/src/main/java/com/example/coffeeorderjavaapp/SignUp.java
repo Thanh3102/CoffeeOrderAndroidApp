@@ -10,15 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeeorderjavaapp.model.User;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -26,7 +23,9 @@ public class SignUp extends AppCompatActivity {
 
     TextView loginbtn;
     Button signupbtn;
-    EditText emailEdt, passwordEdt, nameEdt;
+    EditText emailEdt, passwordEdt, nameEdt, phoneEdt;
+    String email, password, name;
+    Integer phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,11 @@ public class SignUp extends AppCompatActivity {
         emailEdt = findViewById(R.id.edtEmail);
         passwordEdt = findViewById(R.id.edtPass);
         nameEdt = findViewById(R.id.edtName);
+        phoneEdt = findViewById(R.id.edtPhone);
+
+        email = emailEdt.getText().toString().trim();
+        password = passwordEdt.getText().toString().trim();
+        phone = Integer.valueOf(phoneEdt.getText().toString().trim());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -49,14 +53,14 @@ public class SignUp extends AppCompatActivity {
 
         signupbtn.setOnClickListener(v -> {
             if (validateFields()) {
-                firebaseAuth.createUserWithEmailAndPassword(emailEdt.getText().toString(), passwordEdt.getText().toString())
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnSuccessListener(authResult -> {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null) {
                                 Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
                                 String userId = user.getUid();
                                 DocumentReference userRef = firestore.collection("Users").document(userId);
-                                User userInfo = new User(nameEdt.getText().toString(), emailEdt.getText().toString(), passwordEdt.getText().toString(), "user");
+                                User userInfo = new User(name, email, password,phone, "user");
                                 userRef.set(userInfo);
 
                                 Intent i = new Intent(getApplicationContext(), SignIn.class);

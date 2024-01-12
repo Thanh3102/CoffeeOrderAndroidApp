@@ -1,71 +1,115 @@
 <!-- res/layout/activity_profile.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:orientation="vertical"
+    android:background="@color/firstColor">
 
     <ImageView
         android:id="@+id/profileImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_profile_placeholder"
-        android:scaleType="centerCrop"
         android:background="@android:color/darker_gray"
-        android:elevation="8dp"/>
+        android:elevation="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_profile_placeholder" />
 
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profileImageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Username"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"/>
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        >
+        <TextView
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUsername"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="user@example.com"
-        android:textSize="18sp"
-        android:textColor="@android:color/darker_gray"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:paddingRight="20dp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="user"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="123-456-7890"
-        android:textSize="18sp"
-        android:textColor="@android:color/darker_gray"/>
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        >
+
+        <TextView
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="40dp"
+            android:text="Email: "
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="user@example.com"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        >
+
+        <TextView
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:text="Phone:"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="123-456-7890"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btnEditProfile"
-        android:layout_width="match_parent"
+        android:layout_width="335dp"
         android:layout_height="48dp"
         android:layout_below="@+id/tvPhone"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Edit Profile"
-        android:textColor="@android:color/white"
+        android:layout_marginEnd="32dp"
 
         android:elevation="4dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"/>
+        android:text="Edit Profile"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="match_parent"
+        android:layout_width="335dp"
         android:layout_height="48dp"
         android:layout_below="@+id/btnEditProfile"
         android:layout_marginStart="32dp"
@@ -78,4 +122,5 @@
         android:text="Logout"
         android:textColor="@color/white" />
 
-</RelativeLayout>
+
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.coffeeorderjavaapp.R;
@@ -20,11 +21,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.ZoneId;
+
 
 public class ProfileFragment extends Fragment {
 
-    private TextView nameTextView;
-    private TextView emailTextView;
+    private EditText nameEdt, emailEdt, phoneEdt;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
 
@@ -32,8 +35,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        nameTextView = rootView.findViewById(R.id.tvUsername);
-        emailTextView = rootView.findViewById(R.id.tvEmail);
+        nameEdt = rootView.findViewById(R.id.tvUsername);
+        emailEdt = rootView.findViewById(R.id.tvEmail);
+        phoneEdt = rootView.findViewById(R.id.tvPhone);
         Button logoutBtn = rootView.findViewById(R.id.btnLogOut);
         Button edtProfile = rootView.findViewById(R.id.btnEditProfile);
 
@@ -67,9 +71,9 @@ public class ProfileFragment extends Fragment {
         return rootView;
     }
     private void displayUserInfo(User user) {
-        nameTextView.setText(user.getUsername());
-        emailTextView.setText(user.getEmail());
-        //phoneTextView.setText(user.getPhone());
+        nameEdt.setText(user.getUsername());
+        emailEdt.setText(user.getEmail());
+        phoneEdt.setText(user.getPhone());
 
         // Load hình ảnh từ URL bằng thư viện hình ảnh như Picasso hoặc Glide
         // Picasso.get().load(user.getImage()).into(profileImageView);

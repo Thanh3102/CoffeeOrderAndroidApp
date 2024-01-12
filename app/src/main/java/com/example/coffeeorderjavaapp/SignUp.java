@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,8 +25,8 @@ public class SignUp extends AppCompatActivity {
     TextView loginbtn;
     Button signupbtn;
     EditText emailEdt, passwordEdt, nameEdt, phoneEdt;
-    String email, password, name;
-    Integer phone;
+    String email, password, name, phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,7 @@ public class SignUp extends AppCompatActivity {
         nameEdt = findViewById(R.id.edtName);
         phoneEdt = findViewById(R.id.edtPhone);
 
-        email = emailEdt.getText().toString().trim();
-        password = passwordEdt.getText().toString().trim();
-        phone = Integer.valueOf(phoneEdt.getText().toString().trim());
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -53,7 +52,11 @@ public class SignUp extends AppCompatActivity {
 
         signupbtn.setOnClickListener(v -> {
             if (validateFields()) {
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                email = emailEdt.getText().toString().trim();
+                password = passwordEdt.getText().toString().trim();
+                name = nameEdt.getText().toString().trim();
+                phone = phoneEdt.getText().toString().trim();
+                firebaseAuth.createUserWithEmailAndPassword(email, password) // cái này null
                         .addOnSuccessListener(authResult -> {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user != null) {
@@ -106,7 +109,13 @@ public class SignUp extends AppCompatActivity {
         } else {
             emailEdt.setError(null);
         }
-
+        if(phoneEdt.getText() == null){
+            phoneEdt.setError("Phone must be at least 11 characters");
+            Toast.makeText(getApplicationContext(), "phone must be at least 11 characters", Toast.LENGTH_SHORT).show();
+            valid = false;
+        }else {
+            phoneEdt.setError(null);
+        }
         if (passwordEdt.getText().toString().isEmpty() || passwordEdt.getText().toString().length() < 6) {
             passwordEdt.setError("Password must be at least 6 characters");
             Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         db.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
-            searchView.setQueryHint("Xin chào " + documentSnapshot.get("username").toString());
+//            searchView.setQueryHint("Xin chào " + documentSnapshot.get("username").toString());
         });
 
     }

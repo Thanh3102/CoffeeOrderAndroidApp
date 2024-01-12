@@ -8,7 +8,7 @@ public class User {
     private String password;
     private String role;
     private String imageUser;
-    private Integer phone;
+    private String phone;
 
     public String getImageUser() {
         return imageUser;
@@ -18,18 +18,18 @@ public class User {
         this.imageUser = imageUser;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
     public User() {
     }
 
-    public User(String username, String email, String password,Integer phone, String role) {
+    public User(String username, String email, String password,String phone, String role) {
         this.username = username;
         this.email = email;
         this.password = password;

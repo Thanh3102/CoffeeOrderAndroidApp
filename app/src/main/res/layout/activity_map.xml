@@ -13,7 +13,9 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="600dp" />
+        android:layout_height="600dp"
+        map:uiZoomControls="true"
+        map:uiRotateGestures="true"/>
 
     <TextView
         android:id="@+id/markerLocationTv"

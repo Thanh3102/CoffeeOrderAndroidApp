@@ -86,10 +86,11 @@
                     android:textSize="12sp"
                     android:textColor="@color/thirdColor"/>
                 <TextView
+                    android:id="@+id/deliveryLocationTv"
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tới: Số X, đường AAAA, quận BBBBB, Tp CCCC"
+                    android:text="Tới: Chưa chọn địa điểm nhận hàng"
                     android:textSize="12sp"
                     android:textColor="@color/thirdColor"/>
                 <com.google.android.flexbox.FlexboxLayout

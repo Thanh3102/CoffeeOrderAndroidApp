@@ -9,7 +9,6 @@ public class CartItem {
     private int quantity;
     private SizeOption size_option;
     private ArrayList<ToppingOption> topping_options;
-    private int total_price;
 
     public CartItem(){
 
@@ -20,7 +19,6 @@ public class CartItem {
         this.quantity = quantity;
         this.size_option = size_option;
         this.topping_options = topping_options;
-        this.total_price = total_price;
     }
 
     public String getUser_id() {
@@ -63,14 +61,6 @@ public class CartItem {
         this.topping_options = topping_options;
     }
 
-    public int getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(int total_price) {
-        this.total_price = total_price;
-    }
-
     public String getId() {
         return id;
     }
@@ -88,7 +78,6 @@ public class CartItem {
                 ", quantity=" + quantity +
                 ", size_option=" + size_option +
                 ", topping_options=" + topping_options +
-                ", total_price=" + total_price +
                 '}';
     }
 }

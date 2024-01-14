@@ -23,11 +23,23 @@
         android:layout_height="wrap_content"
         android:text="Vị trí marker: "/>
 
-    <Button
-        android:id="@+id/test"
+    <TextView
+        android:id="@+id/distanceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="Khoảng cách: "/>
+
+    <Button
+        android:id="@+id/myLocationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vị trí của tôi"
+        tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/saveLocationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lưu"
         tools:ignore="HardcodedText" />
     <Button
         android:id="@+id/mapBack"

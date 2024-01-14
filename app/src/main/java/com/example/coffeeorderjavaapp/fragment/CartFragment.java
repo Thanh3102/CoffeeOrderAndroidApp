@@ -60,9 +60,6 @@ public class CartFragment extends Fragment{
                 this.cartAdapter = cartAdapter;
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
                 cartRecV.setLayoutManager(linearLayoutManager);
-
-                int total = this.cartAdapter.getTotalPrice();
-                this.totalTv.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(total));
             }
         });
 
@@ -81,7 +78,6 @@ public class CartFragment extends Fragment{
                                         batch.commit().addOnSuccessListener(unused -> {
                                             Snackbar.make(root, "Đã xóa tất cả sản phẩm trong giỏ hàng", Snackbar.LENGTH_SHORT).show();
                                             this.cartAdapter.clearList();
-                                            this.totalTv.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(this.cartAdapter.getTotalPrice()));
                                         }).addOnFailureListener(e -> {
                                             Toast.makeText(getContext(), "Đã có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
                                         });
@@ -114,7 +110,6 @@ public class CartFragment extends Fragment{
                     newList.add(cartItem);
                 }
                 this.cartAdapter.changeList(newList);
-                this.totalTv.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(this.cartAdapter.getTotalPrice()));
             }
         });
     }

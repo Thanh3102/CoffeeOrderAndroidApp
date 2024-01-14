@@ -27,15 +27,15 @@ public class SignIn extends AppCompatActivity {
     private EditText passwordEdt;
     private FirebaseAuth firebaseAuth;
     private boolean valid = true;
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser != null){
-            redirectToAppropriateActivity(currentUser);
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        if(currentUser != null){
+//            redirectToAppropriateActivity(currentUser);
+//        }
+//    }
     private void redirectToAppropriateActivity(FirebaseUser user) {
         // Lấy ID người dùng từ Firebase Authentication
         String userId = user.getUid();
@@ -50,11 +50,13 @@ public class SignIn extends AppCompatActivity {
                     if ("admin".equals(role)) {
                         Log.e("ACCOUNT ", Objects.requireNonNull(documentSnapshot.getString("email")));
                         Log.e("Redirect", "redirectToAppropriateActivity: Admin" );
+                        Toast.makeText(getApplicationContext(), "WELCOME TO ADMIN", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignIn.this, AdminActivity.class));
                     } else {
                         Log.e("Redirect", "redirectToAppropriateActivity: User" );
                         Log.e("ACCOUNT ", Objects.requireNonNull(documentSnapshot.getString("email")));
-                        startActivity(new Intent(SignIn.this, MainActivity.class)); // nãy ko có dòng này
+                        Toast.makeText(getApplicationContext(), "WELCOME TO USER", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignIn.this, MainActivity.class));
                     }
                     finish();
                 }

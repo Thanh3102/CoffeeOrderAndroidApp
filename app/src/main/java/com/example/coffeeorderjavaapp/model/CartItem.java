@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CartItem {
     private String id;
-    private String product_id;
+    private Product product;
     private String user_id;
     private int quantity;
     private SizeOption size_option;
@@ -13,8 +13,8 @@ public class CartItem {
     public CartItem(){
 
     }
-    public CartItem(String product_id, String user_id, int quantity, SizeOption size_option, ArrayList<ToppingOption> topping_options, int total_price) {
-        this.product_id = product_id;
+    public CartItem(Product product_id, String user_id, int quantity, SizeOption size_option, ArrayList<ToppingOption> topping_options, int total_price) {
+        this.product = product_id;
         this.user_id = user_id;
         this.quantity = quantity;
         this.size_option = size_option;
@@ -29,12 +29,12 @@ public class CartItem {
         this.user_id = user_id;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public Product getProduct(){
+        return product;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setProduct_id(Product product_id) {
+        this.product = product_id;
     }
 
     public int getQuantity() {
@@ -73,7 +73,7 @@ public class CartItem {
     public String toString() {
         return "CartItem{" +
                 "id='" + id + '\'' +
-                ", product_id='" + product_id + '\'' +
+                ", product='" + product + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", quantity=" + quantity +
                 ", size_option=" + size_option +

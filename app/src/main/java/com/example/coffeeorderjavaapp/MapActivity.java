@@ -151,14 +151,15 @@ public class MapActivity extends AppCompatActivity implements
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
                 finish();
-            } else
+            } else {
                 mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
                 mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
-                    100, location -> {
-                        Toast.makeText(this, "Current location " + location, Toast.LENGTH_SHORT).show();
-                        Log.i("Location", "Current location " + location);
-                        this.currentLocation = location;
-                    });
+                        100, location -> {
+                            Toast.makeText(this, "Current location " + location, Toast.LENGTH_SHORT).show();
+                            Log.i("Location", "Current location " + location);
+                            this.currentLocation = location;
+                        });
+            }
         }
     }
 

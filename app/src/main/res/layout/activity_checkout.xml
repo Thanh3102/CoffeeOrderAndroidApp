@@ -18,7 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/ic_arrow_back"
-            app:iconSize="28sp"
+            app:iconSize="30sp"
+            android:layout_marginVertical="5dp"
+            android:contentDescription="goBackBtn"
             android:backgroundTint="@color/firstColor"
             app:iconTint="@color/thirdColor"
             />
@@ -106,12 +108,15 @@
                         android:textSize="14sp"
                         android:backgroundTint="@color/thirdColor"
                         android:text="Thay đổi"
+                        android:paddingVertical="10dp"
+                        android:layout_marginEnd="10dp"
                         android:minHeight="0dp"
                         android:minWidth="0dp"/>
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/checkoutProductRecView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:paddingHorizontal="10dp"/>
@@ -148,6 +153,7 @@
                     android:text="Tổng sản phẩm"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/checkoutTotalTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.000.000"
@@ -160,11 +166,13 @@
                 app:justifyContent="space_between"
                 android:layout_marginTop="10dp">
                 <TextView
+                    android:id="@+id/checkoutTexTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thuế (10%)"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/checkoutTaxTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100.000"
@@ -181,6 +189,7 @@
                     android:text="Phí vận chuyển"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/checkoutShippingFeeTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="35.000"
@@ -206,6 +215,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/checkoutSubTotalTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.135.000"
@@ -213,6 +223,7 @@
                 android:textStyle="bold"/>
         </com.google.android.flexbox.FlexboxLayout>
         <Button
+            android:id="@+id/checkoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thanh toán"

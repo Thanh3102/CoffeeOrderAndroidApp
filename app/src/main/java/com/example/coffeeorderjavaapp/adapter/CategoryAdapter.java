@@ -15,11 +15,9 @@ import com.example.coffeeorderjavaapp.R;
 import java.util.Arrays;
 import java.util.List;
 
-// @drawable/rounded_corner_bg3_stroke3 ==> Active color
 public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
-    private List<String> categories = Arrays.asList("All", "Cà phê", "Trà", "Cloud", "Hi-Tea Healthy", "Trà xanh", "Đá xay", "Bánh&Snack");
-    private String Active = "All";
+    private final List<String> categories = Arrays.asList("All", "Cà Phê", "Trà", "Cloud", "Hi-Tea Healthy", "Trà Xanh", "Đá xay", "Bánh&Snack");
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,7 +31,7 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.ViewH
         String categoryName = categories.get(position);
         holder.categoryTv.setText(categoryName);
         holder.categoryTv.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), categoryName, Toast.LENGTH_SHORT).show();
+            ProductAdapter.getInstance().filter(categoryName);
         });
     }
 

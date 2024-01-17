@@ -8,6 +8,7 @@ public class OrderProduct {
     private SizeOption size_option;
     private int quantity;
 
+    public OrderProduct(){};
     public OrderProduct(Product product, ArrayList<ToppingOption> topping_options, SizeOption size_option, int quantity) {
         this.product = product;
         this.topping_options = topping_options;

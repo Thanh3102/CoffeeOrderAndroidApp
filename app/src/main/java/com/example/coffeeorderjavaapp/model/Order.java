@@ -10,12 +10,12 @@ public class Order {
     private ArrayList<OrderProduct> order_products;
     private String payment_method;
     private String status = "Đang chờ";
-    private LocalDateTime create_at;
+    private Date create_at;
     private String user_id;
 
 
     public Order(){}
-    public Order(String delivery_location, ArrayList<OrderProduct> order_products, String payment_method, LocalDateTime create_at, String user_id) {
+    public Order(String delivery_location, ArrayList<OrderProduct> order_products, String payment_method, Date create_at, String user_id) {
         this.delivery_location = delivery_location;
         this.order_products = order_products;
         this.payment_method = payment_method;
@@ -63,11 +63,11 @@ public class Order {
         this.status = status;
     }
 
-    public LocalDateTime getCreate_at() {
+    public Date getCreate_at() {
         return create_at;
     }
 
-    public void setCreate_at(LocalDateTime create_at) {
+    public void setCreate_at(Date create_at) {
         this.create_at = create_at;
     }
 

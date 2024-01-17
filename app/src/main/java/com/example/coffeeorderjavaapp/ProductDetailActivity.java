@@ -39,6 +39,7 @@ import java.util.Locale;
 
 public class ProductDetailActivity extends AppCompatActivity implements ProductDetailAdapterCallBack {
 
+    private final String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private Product product;
     private final ArrayList<ToppingOption> checkedOptions = new ArrayList<>();
 
@@ -60,7 +61,6 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
 
         String productId = getIntent().getStringExtra("productId");
         TextView quantityTv = findViewById(R.id.productDetailQuantityTv);
-        TextView priceTv = findViewById(R.id.productDetailPrice);
         Button backBtn = findViewById(R.id.productDetailBackBtn);
         Button addBtn = findViewById(R.id.productDetailAddCartBtn);
         Button decreaseQtyBtn = findViewById(R.id.detailProductDecreaseQtyBtn);
@@ -125,7 +125,6 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
                 return;
             }
             this.countTotalPrice();
-            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
             CartItem addingItem = new CartItem(this.product,user_id, this.quantity, this.sizeOption, this.checkedOptions, this.total);
             db.collection("carts").add(addingItem).addOnSuccessListener(documentReference -> {
                 Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
@@ -209,6 +208,5 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
     public void chooseSize(SizeOption option) {
         this.sizeOption = option;
         this.countTotalPrice();
-        Toast.makeText(this, this.sizeOption.toString(), Toast.LENGTH_SHORT).show();
     }
 }

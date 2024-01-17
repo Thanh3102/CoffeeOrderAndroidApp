@@ -30,6 +30,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -73,7 +75,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 return;
             }
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                Order order = new Order(delivery_location, this.orderProducts, "Thanh toán khi nhận hàng", LocalDateTime.now(), user_id);
+                Date currentTime = Calendar.getInstance().getTime();
+                Order order = new Order(delivery_location, this.orderProducts, "Thanh toán khi nhận hàng", currentTime, user_id);
                 db.collection("orders").add(order).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         Toast.makeText(this, "Tạo đơn hàng thành công", Toast.LENGTH_SHORT).show();

@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,14 +21,16 @@ import com.example.coffeeorderjavaapp.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private static final ProductAdapter productAdapter = new ProductAdapter();
     private List<Product> products;
-    private List<Product> filterProducts;
+    private final List<Product> filterProducts = new ArrayList<>();
     private Context context;
 
 
@@ -43,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product product = products.get(position);
+        Product product = filterProducts.get(position);
         holder.getTvName().setText(product.getName());
         holder.getTvCategory().setText(product.getCategory());
         holder.getTvPrice().setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(product.getPrice()));
@@ -57,7 +61,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return filterProducts.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,6 +101,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public void setProducts(List<Product> products) {
         this.products = products;
+        filterProducts.addAll(products);
     }
 
     public Context getContext() {
@@ -111,7 +116,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return productAdapter;
     }
 
-    public void filter(String name){
-
+    @SuppressLint("NotifyDataSetChanged")
+    public void filter(String category){
+        filterProducts.clear();
+        if(category.equals("All")){
+            filterProducts.addAll(products);
+            this.notifyDataSetChanged();
+            return;
+        }
+        for(Product product : products){
+            if (product.getCategory().equals(category)){
+                filterProducts.add(product);
+            }
+        }
+        if (filterProducts.size() == 0){
+            Toast.makeText(context, "Không có sản phẩm", Toast.LENGTH_SHORT).show();
+        }
+        this.notifyDataSetChanged();
     }
 }

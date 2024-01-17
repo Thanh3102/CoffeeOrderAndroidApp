@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class SizeOptionAdapter extends RecyclerView.Adapter<SizeOptionAdapter.Vi
         String optionPrice = NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(option.getSize_price());
         holder.getTv().setText(option.getSize_name() + " + " + optionPrice);
         holder.itemView.setOnClickListener(v -> {
+            Toast.makeText(v.getContext(), "Đã chọn size " + option.getSize_name(), Toast.LENGTH_SHORT).show();
             adapterCallback.chooseSize(option);
         });
     }

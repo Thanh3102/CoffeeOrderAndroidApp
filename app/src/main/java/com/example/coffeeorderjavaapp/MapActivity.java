@@ -64,7 +64,6 @@ public class MapActivity extends AppCompatActivity implements
             mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
                     100, location -> {
-                        Toast.makeText(this, "Current location " + location, Toast.LENGTH_SHORT).show();
                         Log.i("Location", "Current location " + location);
                         this.currentLocation = location;
                     });
@@ -95,7 +94,7 @@ public class MapActivity extends AppCompatActivity implements
 
         myLocationBtn.setOnClickListener(v -> {
             if (map == null || currentLocation == null) {
-                Toast.makeText(this, "Map is not ready", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Đang định vị vị trí của bạn", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Lat: " + currentLocation.getLatitude() + " Lng: " + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                 if (this.currentMark != null) {
@@ -159,7 +158,6 @@ public class MapActivity extends AppCompatActivity implements
                 mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
                         100, location -> {
                             Toast.makeText(this, "Current location " + location, Toast.LENGTH_SHORT).show();
-                            Log.i("Location", "Current location " + location);
                             this.currentLocation = location;
                         });
             }

@@ -6,7 +6,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.coffeeorderjavaapp.adapter.MainViewPagerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Intent intent = new Intent(this, TestActivity.class);
-//        startActivity(intent);
-
-
         TabLayout tabLayout = findViewById(R.id.navigationBottomLayout);
         ViewPager2 viewPager = findViewById(R.id.mainViewPager);
-        SearchView searchView = findViewById(R.id.mainSearchView);
+        TextView searchBtn = findViewById(R.id.mainSearchView);
         MainViewPagerAdapter vpAdapter = new MainViewPagerAdapter(this);
         viewPager.setAdapter(vpAdapter);
+
+        searchBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+        });
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

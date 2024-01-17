@@ -20,6 +20,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
+import com.example.coffeeorderjavaapp.OrderHistoryActivity;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.SignIn;
 import com.example.coffeeorderjavaapp.model.User;
@@ -37,10 +38,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+
 public class ProfileFragment extends Fragment {
 
     private EditText nameEdt, phoneEdt;
     private TextView tvEmail;
+    private TextView nameTextView;
     private com.google.android.material.imageview.ShapeableImageView profileImageView;
 
     private FirebaseAuth firebaseAuth;
@@ -48,7 +51,6 @@ public class ProfileFragment extends Fragment {
     StorageReference storageReference;
     LinearProgressIndicator progressIndicator;
     Uri image;
-
     private Button btnSelectImage, btnLogOut, btnEditProfile;
     String newName, newPhone;
     private boolean valid = true;
@@ -70,6 +72,8 @@ public class ProfileFragment extends Fragment {
                             }
                         }
                     });
+    private Button btnOrderHistory;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +90,9 @@ public class ProfileFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
+        nameTextView = rootView.findViewById(R.id.tvUsername);
+        Button logoutBtn = rootView.findViewById(R.id.btnLogOut);
+        btnOrderHistory = rootView.findViewById(R.id.btnOrderHistory);
 
         // Lấy thông tin người dùng từ Firestore
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -105,10 +112,17 @@ public class ProfileFragment extends Fragment {
             });
         }
 
-        btnLogOut.setOnClickListener(v -> {
+
+        btnOrderHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(this.getContext(), OrderHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        logoutBtn.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this.getContext(), SignIn.class);
             startActivity(intent);
+            getActivity().finish();
         });
 
         btnEditProfile.setOnClickListener(v -> {

@@ -1,73 +1,79 @@
 <!-- res/layout/activity_profile.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/firstColor">
+    android:background="@color/firstColor"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progress"/>
+                android:layout_height="wrap_content" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profileImageView"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:padding="5dp"
-                app:strokeWidth="10dp"
-                app:strokeColor="@android:color/darker_gray"
-                app:shapeAppearanceOverlay="@style/circleImageView"
-                android:src="@drawable/ic_profile_placeholder"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:padding="5dp"
                 android:scaleType="centerCrop"
-                android:layout_margin="10dp"/>
-                <Button
-                    android:id="@+id/btnSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select image"
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                android:src="@drawable/ic_profile_placeholder"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:strokeColor="@android:color/darker_gray"
+                app:strokeWidth="10dp" />
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Select image"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                >
+                android:orientation="horizontal">
+
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
                     android:text="Username"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
-                    android:paddingRight="20dp"
                     android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/tvUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="user"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="131dp"
@@ -87,12 +93,12 @@
                     android:textSize="24sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="131dp"
@@ -102,14 +108,15 @@
                     android:textColor="@color/black"
                     android:textSize="24dp"
                     android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/tvPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:text="123-456-7890"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -121,10 +128,21 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-
                 android:elevation="4dp"
                 android:text="Edit Profile"
                 android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnOrderHistory"
+                android:layout_width="335dp"
+                android:layout_height="48dp"
+                android:layout_below="@+id/tvPhone"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:elevation="4dp"
+                android:text="Order History"
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/btnLogOut"
@@ -142,7 +160,6 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
+
 

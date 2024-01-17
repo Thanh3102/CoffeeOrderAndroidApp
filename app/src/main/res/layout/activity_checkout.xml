@@ -106,6 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
+                        android:textColor="@color/firstColor"
                         android:backgroundTint="@color/thirdColor"
                         android:text="Thay đổi"
                         android:paddingVertical="10dp"
@@ -229,6 +230,7 @@
             android:text="Thanh toán"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            android:backgroundTint="@color/thirdColor"/>
+            android:backgroundTint="@color/thirdColor"
+            android:textColor="@color/firstColor"/>
     </LinearLayout>
 </LinearLayout>

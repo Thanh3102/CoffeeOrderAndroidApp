@@ -80,7 +80,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 db.collection("orders").add(order).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         Toast.makeText(this, "Tạo đơn hàng thành công", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
                     }
                     else {
                         Toast.makeText(this, "Tạo đơn hàng thất bại", Toast.LENGTH_SHORT).show();

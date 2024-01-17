@@ -65,15 +65,17 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void filter(String text) {
-        ArrayList<Product> filteredlist = new ArrayList<Product>();
+        ArrayList<Product> filteredlist = new ArrayList<>();
         for (Product item : productArrayList) {
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredlist.add(item);
             }
         }
         if (filteredlist.isEmpty()) {
+            searchRV.setVisibility(View.GONE);
             Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
+            searchRV.setVisibility(View.VISIBLE);
             searchProductAdapter.filterList(filteredlist);
         }
     }

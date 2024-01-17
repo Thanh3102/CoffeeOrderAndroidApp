@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.coffeeorderjavaapp.TestSignOut;
 import com.example.coffeeorderjavaapp.fragment.CartFragment;
-import com.example.coffeeorderjavaapp.fragment.FavoriteFragment;
 import com.example.coffeeorderjavaapp.fragment.ProductListFragment;
 import com.example.coffeeorderjavaapp.fragment.ProfileFragment;
 
@@ -27,8 +25,6 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new CartFragment();
             case 2:
-                return new FavoriteFragment();
-            case 3:
                 return new ProfileFragment();
             default:
                 return new ProductListFragment();
@@ -36,6 +32,6 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     }
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }

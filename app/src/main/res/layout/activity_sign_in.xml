@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:id="@+id/viewSignIn"
     tools:context=".SignIn">
 
     <ScrollView
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
                 android:text="Email"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -41,28 +43,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
+                android:textColor="@color/black"
                 android:hint="Enter your email address"
                 android:inputType="textEmailAddress"
                 android:padding="20dp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
                 android:text="Password"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:textStyle="bold" />
 
-                />
-
-            <EditText
-                android:id="@+id/edtPass"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:hint="Enter your password"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtPass"
                 android:inputType="textPassword"
-                android:padding="20dp" />
+                android:textColor="@color/black"
+                android:hint="Enter your password"
+                android:ems="15" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="wrap_content"
@@ -74,6 +83,7 @@
                 android:layout_height="60dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="Login"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:backgroundTint="@color/black" />
 
@@ -97,14 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:gravity="center"
-                android:text="Forgot your password?"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+            
         </LinearLayout>
     </ScrollView>
 

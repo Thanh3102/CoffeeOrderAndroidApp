@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:scrollbars="none"
+
         android:layout_alignParentBottom="true"
         >
         <LinearLayout
@@ -23,6 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:text="@string/sign_up_title"
                 android:textSize="36sp"
@@ -32,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:textColor="@color/black"
                 android:paddingTop="15dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -44,6 +47,7 @@
                 android:inputType="text"
                 android:hint="Enter your user name"
                 android:padding="20dp"
+                android:textColor="@color/black"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -53,6 +57,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:id="@+id/edtEmail"
@@ -60,9 +65,31 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="Enter your email address"
+                android:textColor="@color/black"
                 android:padding="20dp"
                 android:alpha="0.7"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone number"
+                android:paddingTop="15dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"
+                />
+
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:hint="Enter your phone number"
+                android:textColor="@color/black"
+                android:inputType="phone"
+                android:padding="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,24 +98,31 @@
                 android:paddingTop="15dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
-
+                android:textColor="@color/black"
                 />
-            <EditText
-                android:id="@+id/edtPass"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Enter your password"
-                android:padding="20dp"
-                android:alpha="0.7"
-                />
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtPass"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:hint="Enter your password"
+                    android:ems="15" />
+
+            </com.google.android.material.textfield.TextInputLayout>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
 
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnSignup"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Sign up"

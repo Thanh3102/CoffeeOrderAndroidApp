@@ -67,11 +67,6 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:icon="@drawable/ic_favorite"
-            android:text="Favourite"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:icon="@drawable/ic_person"
             android:text="Profile"/>
     </com.google.android.material.tabs.TabLayout>

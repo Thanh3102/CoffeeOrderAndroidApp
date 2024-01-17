@@ -15,6 +15,10 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         Button btnSignOut = findViewById(R.id.btnSignOut);
+        Button addProduct = findViewById(R.id.btnManageProducts);
+        addProduct.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+        });
         btnSignOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(),SignIn.class));

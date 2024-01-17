@@ -1,0 +1,24 @@
+<!-- topping_option_layout.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp">
+
+    <EditText
+        android:id="@+id/edtToppingName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="Topping Name" />
+
+    <EditText
+        android:id="@+id/edtToppingPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:inputType="numberDecimal"
+        android:hint="Topping Price" />
+
+</LinearLayout>

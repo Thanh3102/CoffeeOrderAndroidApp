@@ -34,15 +34,17 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            String role;
             FirebaseFirestore.getInstance().collection("Users").document(firebaseUser.getUid()).get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     User user = task.getResult().toObject(User.class);
-                    if(user.getRole() == "admin"){
+                    Log.e("TEST", "Role = " + user.getRole() );
+                    if(user.getRole().equals("admin")){
+                        Log.e("admin","adad");
                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
                     }
                     else{
+                        Log.e("user","adad");
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }

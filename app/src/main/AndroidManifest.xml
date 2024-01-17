@@ -34,6 +34,9 @@
 
         </activity>
         <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -42,22 +45,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestSignOut" />
+
         <activity
             android:name=".CheckoutActivity"
             android:exported="false" />
         <activity
             android:name=".AdminActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignUp"
             android:exported="true" />
         <activity
             android:name=".SignIn"
             android:exported="true" />
-        <activity
-            android:name=".TestActivity"
-            android:exported="false" />
         <activity
             android:name=".ProductDetailActivity"
             android:exported="false" />

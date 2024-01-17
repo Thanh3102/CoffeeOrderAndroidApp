@@ -15,7 +15,6 @@ public class Product{
     private ArrayList<ToppingOption> topping_options;
 
     public Product(){}
-
     public Product(String name, String description, String category, String imageURL, int price, ArrayList<SizeOption> size_options, ArrayList<ToppingOption> topping_options) {
 
         this.name = name;

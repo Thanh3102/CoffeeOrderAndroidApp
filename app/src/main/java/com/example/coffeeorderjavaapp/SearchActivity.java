@@ -41,8 +41,6 @@ public class SearchActivity extends AppCompatActivity {
         searchRV = findViewById(R.id.idRVCourses);
         searchView = findViewById(R.id.search_view);
         imageView = findViewById(R.id.backMain);
-        // Ẩn RecyclerView khi trang chủ được tạo
-        searchRV.setVisibility(View.GONE);
 
         buildRecyclerView();
 
@@ -54,12 +52,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    searchRV.setVisibility(View.GONE);
-                } else {
-                    searchRV.setVisibility(View.VISIBLE);
-                    filter(newText);
-                }
+                filter(newText);
                 return false;
             }
         });
@@ -72,39 +65,43 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void filter(String text) {
-        ArrayList<Product> filteredList = new ArrayList<>();
-        String searchText = VietnameseUtil.removeAccent(text.toLowerCase());
-
+        ArrayList<Product> filteredlist = new ArrayList<Product>();
         for (Product item : productArrayList) {
-            String itemName = VietnameseUtil.removeAccent(item.getName().toLowerCase());
-            if (itemName.contains(searchText)) {
-                filteredList.add(item);
+            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
             }
         }
-
-        if (filteredList.isEmpty()) {
-//            Toast.makeText(this, "Không tìm thấy dữ liệu..", Toast.LENGTH_SHORT).show();
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
-            searchProductAdapter.filterList(filteredList);
+            searchProductAdapter.filterList(filteredlist);
         }
     }
 
     private void buildRecyclerView() {
-        productArrayList = new ArrayList<>();
+        productArrayList = new ArrayList<Product>();
         db.collection("products").get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot d : list) {
-                            Product c = d.toObject(Product.class);
-                            c.setId(d.getId());
-                            productArrayList.add(c);
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Product c = d.toObject(Product.class);
+                                c.setId(d.getId());
+                                productArrayList.add(c);
+                            }
+                            searchProductAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(SearchActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
                         }
-                        searchProductAdapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(SearchActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
                     }
-                }).addOnFailureListener(e -> Toast.makeText(SearchActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show());
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SearchActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         searchProductAdapter = new SearchProductAdapter(productArrayList, SearchActivity.this);
         LinearLayoutManager manager = new LinearLayoutManager(this);

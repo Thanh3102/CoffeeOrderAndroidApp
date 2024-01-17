@@ -5,15 +5,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/firstColor"
     tools:context=".AddProductActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Add product"
-        android:padding="20dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNavigatorAdmin"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/thirdColor"
+            android:contentDescription="backBtn"
+            android:drawableStart="@drawable/ic_arrow_back"
+            android:drawableTint="@color/firstColor"
+            android:textColor="@color/firstColor"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Add Product"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Product Name"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
             <TextView
                 android:layout_width="match_parent"
@@ -48,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Description"
                 android:inputType="textMultiLine"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
             <TextView
                 android:layout_width="match_parent"
@@ -60,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Category"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
@@ -102,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Price"
                 android:inputType="number"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
             <!-- Size Options -->
             <TextView

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
 
 <!-- Header -->
@@ -18,39 +19,32 @@ android:orientation="vertical">
         android:textStyle="bold" />
 
 <!-- Navigation Buttons -->
-<LinearLayout
+<com.google.android.flexbox.FlexboxLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    app:justifyContent="space_around"
+    >
 
     <Button
         android:id="@+id/btnManageProducts"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Products"
         />
-
-    <Button
-        android:id="@+id/btnManageProfile"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="Manage Profile"
-        />
-
-
-</LinearLayout>
-
-<!-- Placeholder for Fragment Container -->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/frameLayoutContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1" />-->
     <Button
         android:id="@+id/btnSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"/>
+</com.google.android.flexbox.FlexboxLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ProductManageRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/thirdColor"
+        android:paddingHorizontal="20dp" />
+
+
 </LinearLayout>

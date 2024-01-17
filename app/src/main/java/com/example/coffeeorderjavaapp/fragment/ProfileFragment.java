@@ -11,13 +11,17 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.coffeeorderjavaapp.OrderHistoryActivity;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.SignIn;
 import com.google.firebase.auth.FirebaseAuth;
+
 public class ProfileFragment extends Fragment {
 
     private TextView nameTextView;
     private TextView emailTextView;
+
+    private Button btnOrderHistory;
 
 
     @Override
@@ -25,8 +29,14 @@ public class ProfileFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         nameTextView = rootView.findViewById(R.id.profileUsername);
         Button logoutBtn = rootView.findViewById(R.id.logoutBtn);
+        btnOrderHistory = rootView.findViewById(R.id.btnOrderHistory);
 
         nameTextView.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        btnOrderHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(this.getContext(), OrderHistoryActivity.class);
+            startActivity(intent);
+        });
 
         logoutBtn.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();

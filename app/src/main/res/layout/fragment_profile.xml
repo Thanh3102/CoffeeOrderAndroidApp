@@ -115,6 +115,13 @@
             android:layout_height="wrap_content"
             android:text="logout"
             tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnOrderHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order History"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 

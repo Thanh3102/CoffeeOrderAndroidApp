@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
 
 import com.example.coffeeorderjavaapp.adapter.MainViewPagerAdapter;
@@ -36,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = findViewById(R.id.mainSearchView);
         MainViewPagerAdapter vpAdapter = new MainViewPagerAdapter(this);
         viewPager.setAdapter(vpAdapter);
+
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

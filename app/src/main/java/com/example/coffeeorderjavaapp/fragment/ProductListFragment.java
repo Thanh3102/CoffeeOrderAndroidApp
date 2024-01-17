@@ -44,11 +44,12 @@ public class ProductListFragment extends Fragment {
                 for(QueryDocumentSnapshot document : task.getResult()){
                     Product product = document.toObject(Product.class);
                     product.setId(document.getId());
-                    Log.e("Convert product", product.toString());
                     productFromDatabase.add(product);
                 }
                 RecyclerView productRecView = rootView.findViewById(R.id.productListRecView);
-                ProductAdapter productAdapter = new ProductAdapter(productFromDatabase, rootView.getContext());
+                ProductAdapter productAdapter = ProductAdapter.getInstance();
+                productAdapter.setProducts(productFromDatabase);
+                productAdapter.setContext(this.getContext());
                 productRecView.setAdapter(productAdapter);
             }
             else {

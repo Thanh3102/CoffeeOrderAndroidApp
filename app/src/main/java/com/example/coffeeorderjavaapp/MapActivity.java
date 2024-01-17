@@ -23,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -118,6 +119,8 @@ public class MapActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.map = googleMap;
+        LatLng vietnam = new LatLng(15.9030623, 105.8066925);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(vietnam, 5));
         googleMap.setOnMapClickListener(latLng -> {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             try {

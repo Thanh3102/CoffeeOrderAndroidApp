@@ -126,7 +126,7 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
             }
             this.countTotalPrice();
             String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            CartItem addingItem = new CartItem(this.product.getId(),user_id, this.quantity, this.sizeOption, this.checkedOptions, this.total);
+            CartItem addingItem = new CartItem(this.product,user_id, this.quantity, this.sizeOption, this.checkedOptions, this.total);
             db.collection("carts").add(addingItem).addOnSuccessListener(documentReference -> {
                 Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                 finish();

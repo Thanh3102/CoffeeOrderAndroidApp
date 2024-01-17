@@ -29,14 +29,14 @@
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:layout_margin="10dp"/>
-                <Button
-                    android:id="@+id/btnSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select image"
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select image"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,6 +125,18 @@
 
                 android:elevation="4dp"
                 android:text="Edit Profile"
+                android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnChangePasswordPage"
+                android:layout_width="335dp"
+                android:layout_height="48dp"
+                android:layout_below="@+id/tvPhone"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+
+                android:elevation="4dp"
+                android:text="Change Password"
                 android:textColor="@android:color/white" />
 
             <Button

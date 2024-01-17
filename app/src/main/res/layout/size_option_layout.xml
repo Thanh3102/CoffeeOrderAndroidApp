@@ -1,4 +1,3 @@
-<!-- size_option_layout.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -10,6 +9,7 @@
         android:id="@+id/edtSizeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_weight="1"
         android:hint="Size Name" />
 
@@ -19,6 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="numberDecimal"
+        android:textColor="@color/black"
         android:hint="Size Price" />
+    <ImageButton
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Clear"
+        android:visibility="gone" />
 
 </LinearLayout>

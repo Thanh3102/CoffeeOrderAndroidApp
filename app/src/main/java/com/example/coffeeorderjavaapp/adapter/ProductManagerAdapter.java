@@ -3,7 +3,7 @@ package com.example.coffeeorderjavaapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,33 +13,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.coffeeorderjavaapp.ProductDetailActivity;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.Product;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAdapter.ViewHolder> {
+    private static final ProductManagerAdapter productManagerAdapter = new ProductManagerAdapter();
+    private ArrayList<Product> products;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private static final ProductAdapter productAdapter = new ProductAdapter();
-    private List<Product> products;
-    private List<Product> filterProducts;
     private Context context;
+    private ProductManagerAdapter(){
 
-
-    private ProductAdapter(){}
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product, parent, false);
+                .inflate(R.layout.item_product_manager, parent, false);
         return new ViewHolder(view);
     }
-
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -48,31 +48,46 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.getTvCategory().setText(product.getCategory());
         holder.getTvPrice().setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(product.getPrice()));
         Picasso.with(context).load(product.getImageURL()).into(holder.getIvProductImg());
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
-            intent.putExtra("productId", product.getId());
-            holder.itemView.getContext().startActivity(intent);
+        holder.getDeleteBtn().setOnClickListener(v -> {
+            db.collection("products").document(product.getId())
+                    .delete()
+                    .addOnSuccessListener(command -> {
+                        this.products.remove(product);
+                        notifyItemRemoved(position);
+                    }).addOnFailureListener(e -> Log.w("Product DELETE ERROR", "Error deleting document", e));
         });
-    }
+           }
+
+
+
 
     @Override
     public int getItemCount() {
         return products.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView tvName;
         private final TextView tvCategory;
         private final TextView tvPrice;
         private final ImageView ivProductImg;
+        private final TextView deleteBtn;
 
-        public ViewHolder(View view) {
-            super(view);
-            this.tvName = (TextView) view.findViewById(R.id.productItemName);
-            this.tvCategory = (TextView) view.findViewById(R.id.productItemCategory);
-            this.tvPrice = (TextView) view.findViewById(R.id.productItemPrice);
-            this.ivProductImg = (ImageView) view.findViewById(R.id.itemProductImageView);
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.tvName = (TextView) itemView.findViewById(R.id.itemProductManagerNameTv);
+            this.tvCategory = (TextView) itemView.findViewById(R.id.productItemCategory);
+            this.tvPrice = (TextView) itemView.findViewById(R.id.itemProductManagerTotalTv);
+            this.ivProductImg = (ImageView) itemView.findViewById(R.id.itemProductManagerImageView);
+            this.deleteBtn = (TextView) itemView.findViewById(R.id.ProductManagerItemDeleteBtn);
+
         }
+
+        public TextView getDeleteBtn() {
+            return deleteBtn;
+        }
+
 
         public TextView getTvName() {
             return tvName;
@@ -90,12 +105,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             return ivProductImg;
         }
     }
-
     public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 
@@ -107,11 +121,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.context = context;
     }
 
-    public static ProductAdapter getInstance(){
-        return productAdapter;
+    public static ProductManagerAdapter getInstance(){
+        return productManagerAdapter;
     }
 
-    public void filter(String name){
-
+    public void addProduct(Product product){
+        this.products.add(product);
+        this.notifyItemInserted(products.size() - 1);
     }
 }

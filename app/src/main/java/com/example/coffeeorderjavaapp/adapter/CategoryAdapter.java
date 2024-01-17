@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,9 @@ public class CategoryAdapter extends  RecyclerView.Adapter<CategoryAdapter.ViewH
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String categoryName = categories.get(position);
         holder.categoryTv.setText(categoryName);
+        holder.categoryTv.setOnClickListener(v -> {
+            Toast.makeText(v.getContext(), categoryName, Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

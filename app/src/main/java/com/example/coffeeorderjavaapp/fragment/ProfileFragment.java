@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coffeeorderjavaapp.ChangePasswordActivity;
 import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.SignIn;
 import com.example.coffeeorderjavaapp.model.User;
@@ -50,7 +51,7 @@ public class ProfileFragment extends Fragment {
     LinearProgressIndicator progressIndicator;
     Uri image;
 
-    private Button btnSelectImage, btnLogOut, btnEditProfile;
+    private Button btnSelectImage, btnLogOut, btnEditProfile, btnChangePasswordPage;
     String newName, newPhone;
     private boolean valid = true;
 
@@ -63,7 +64,6 @@ public class ProfileFragment extends Fragment {
                                 if (o.getData() != null) {
                                     image = o.getData().getData();
                                     btnEditProfile.setEnabled(true);
-                                    // Glide.with(getContext()).load(image).into(profileImageView);
                                     Picasso.with(getContext()).load(image).into(profileImageView);
                                 } else {
                                     Toast.makeText(getContext(), "Please select an image", Toast.LENGTH_SHORT).show();
@@ -83,7 +83,7 @@ public class ProfileFragment extends Fragment {
         profileImageView = rootView.findViewById(R.id.profileImageView);
         btnSelectImage = rootView.findViewById(R.id.btnSelectImage);
         progressIndicator = rootView.findViewById(R.id.progress);
-
+        btnChangePasswordPage = rootView.findViewById(R.id.btnChangePasswordPage);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -105,6 +105,9 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
+        btnChangePasswordPage.setOnClickListener(v -> {
+            startActivity(new Intent(this.getContext(), ChangePasswordActivity.class));
+        });
 
         btnLogOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();

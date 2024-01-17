@@ -7,14 +7,31 @@
     android:background="@drawable/background"
     tools:context=".SplashActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/josefin_sans_bold"
-        android:text="WELCOME TO MY COFFEe SHOP"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:text="COFFEE SHOP"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:text="Enjoy the drink coffee ."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+    </LinearLayout>
 
 </RelativeLayout>

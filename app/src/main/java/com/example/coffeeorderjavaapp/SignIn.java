@@ -53,9 +53,6 @@ public class SignIn extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "WELCOME TO ADMIN", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignIn.this, AdminActivity.class));
                     } else {
-                        Log.e("Redirect", "redirectToAppropriateActivity: User" );
-                        Log.e("ACCOUNT ", Objects.requireNonNull(documentSnapshot.getString("email")));
-                        Toast.makeText(getApplicationContext(), "WELCOME TO USER", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignIn.this, MainActivity.class));
                     }
                     finish();

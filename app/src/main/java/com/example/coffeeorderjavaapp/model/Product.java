@@ -16,7 +16,8 @@ public class Product{
 
     public Product(){}
 
-    public Product( String name, String description, String category, String imageURL, int price, ArrayList<SizeOption> size_options, ArrayList<ToppingOption> topping_options) {
+
+    public Product(String name, String description, String category, String imageURL, int price, ArrayList<SizeOption> size_options, ArrayList<ToppingOption> topping_options) {
 
         this.name = name;
         this.description = description;

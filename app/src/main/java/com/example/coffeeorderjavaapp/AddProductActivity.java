@@ -13,9 +13,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.coffeeorderjavaapp.adapter.ProductManagerAdapter;
 import com.example.coffeeorderjavaapp.model.Product;
 import com.example.coffeeorderjavaapp.model.SizeOption;
 import com.example.coffeeorderjavaapp.model.ToppingOption;
@@ -55,7 +57,7 @@ public class AddProductActivity extends AppCompatActivity {
     private Uri imageUri;
 
 
-    private Button btnAddProduct, btnAddSize, btnAddTopping, btnSelectImage;
+    private Button btnAddProduct, btnAddSize, btnAddTopping, btnSelectImage, btnNavigatorAdmin;
     private LinearLayout layoutSizeOptions, layoutToppingOptions;
 
     private ArrayList<SizeOption> sizeOptions = new ArrayList<>();
@@ -112,6 +114,7 @@ public class AddProductActivity extends AppCompatActivity {
         layoutToppingOptions = findViewById(R.id.layoutToppingOptions);
         imageView = findViewById(R.id.imageView);
         btnSelectImage = findViewById(R.id.btnSelectImage);
+        btnNavigatorAdmin = findViewById(R.id.btnNavigatorAdmin);
 
         // Initialize Firestore
         firestore = FirebaseFirestore.getInstance();
@@ -119,6 +122,9 @@ public class AddProductActivity extends AppCompatActivity {
         storageRef = storage.getReference().child("product");
 
 
+        btnNavigatorAdmin.setOnClickListener(v -> {
+            finish();
+        });
         // Set onClickListener for Add Product button
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +164,20 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Add the SizeOption view to the layout
         layoutSizeOptions.addView(sizeOptionView);
+        // Find the Clear button in the newly added view
+        ImageButton btnClear = sizeOptionView.findViewById(R.id.btnClear);
+
+        // Set click listener for the Clear button
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove the SizeOption view from the layout
+                layoutSizeOptions.removeView(sizeOptionView);
+            }
+        });
+
+        // Set the visibility of the Clear button to visible
+        btnClear.setVisibility(View.VISIBLE);
     }
 
     private void addToppingOption() {
@@ -166,6 +186,20 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Add the ToppingOption view to the layout
         layoutToppingOptions.addView(toppingOptionView);
+        // Find the Clear button in the newly added view
+        ImageButton btnClear = toppingOptionView.findViewById(R.id.btnClear);
+
+        // Set click listener for the Clear button
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove the SizeOption view from the layout
+                layoutSizeOptions.removeView(toppingOptionView);
+            }
+        });
+
+        // Set the visibility of the Clear button to visible
+        btnClear.setVisibility(View.VISIBLE);
     }
 
     private void addProduct() {
@@ -206,12 +240,14 @@ public class AddProductActivity extends AppCompatActivity {
             uploadImageToStorage(imageUri, productName, description, category, price);
         } else {
 
-            // Create Product object
-            Product product = new Product(productName, description, category, "", price, sizeOptions, toppingOptions);
+//            // Create Product object
+//            Product product = new Product(productName, description, category, "", price, sizeOptions, toppingOptions);
+//
+//        // Save product to Firestore
+//            saveProductToFirestore(product);
+            Toast.makeText(AddProductActivity.this, "Bạn cần thêm ảnh sản phẩm.", Toast.LENGTH_SHORT).show();
 
-        // Save product to Firestore
-            saveProductToFirestore(product);
-    }
+        }
     }
     private void uploadImageToStorage(Uri imageUri, String productName, String description, String category, int price) {
         // Tạo tên duy nhất cho ảnh, sử dụng UUID để tránh trùng lặp
@@ -239,6 +275,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void saveProductToFirestore(Product product) {
+        ProductManagerAdapter.getInstance().addProduct(product);
         // Lưu thông tin sản phẩm vào Firestore
         firestore.collection("products").add(product)
                 .addOnCompleteListener(task -> {

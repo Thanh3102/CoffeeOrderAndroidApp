@@ -1,9 +1,11 @@
 package com.example.coffeeorderjavaapp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,13 +16,16 @@ import com.example.coffeeorderjavaapp.R;
 import com.example.coffeeorderjavaapp.model.Order;
 import com.example.coffeeorderjavaapp.model.OrderProduct;
 import com.example.coffeeorderjavaapp.model.ToppingOption;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Context context;
     private ArrayList<Order> orderArrayList;
 
@@ -44,6 +49,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.createDate.setText(order.getCreate_at().toString());
         holder.deliveryLocation.setText(order.getDelivery_location());
         holder.orderPriceTotal.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(countTotal(order)));
+        holder.btnDeleteOrder.setOnClickListener(v -> {
+            db.collection("orders").document(order.getId())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("ok", "DocumentSnapshot successfully deleted!");
+                            orderArrayList.remove(order);
+                            notifyItemRemoved(holder.getAdapterPosition());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("failure", "Error deleting document", e);
+                        }
+                    });
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 holder.recyclerViewOrderProduct.getContext(),
                 LinearLayoutManager.VERTICAL,
@@ -65,6 +88,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private final TextView deliveryLocation;
         private final TextView orderPriceTotal;
         private final TextView status;
+        private final Button btnDeleteOrder;
         private final RecyclerView recyclerViewOrderProduct;
 
         public ViewHolder(@NonNull View itemView) {
@@ -74,6 +98,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             deliveryLocation = itemView.findViewById(R.id.deliverLocation);
             orderPriceTotal = itemView.findViewById(R.id.orderPriceTotal);
             status = itemView.findViewById(R.id.status);
+            btnDeleteOrder = itemView.findViewById(R.id.btnDeleteOrder);
             recyclerViewOrderProduct = itemView.findViewById(R.id.recyclerViewOrderProduct);
         }
     }
